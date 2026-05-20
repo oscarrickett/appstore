@@ -6,32 +6,30 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
   :root {
-    --bg-1: #0b1020;
-    --bg-2: #1a1f3a;
-    --bg-3: #2a1b4d;
-    --tile: rgba(255,255,255,0.08);
-    --tile-hi: rgba(255,255,255,0.16);
     --text: #f5f7fb;
-    --muted: rgba(245,247,251,0.65);
-    --ring: rgba(255,255,255,0.25);
+    --muted: rgba(245,247,251,0.55);
+    --faint: rgba(245,247,251,0.35);
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
   body {
     margin: 0;
-    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-family: -apple-system, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
     color: var(--text);
-    background:
-      radial-gradient(1200px 800px at 15% 10%, #3b2a6b 0%, transparent 60%),
-      radial-gradient(1000px 700px at 85% 90%, #1e3a8a 0%, transparent 55%),
-      linear-gradient(160deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+    background: #0a0d18;
+    background-image:
+      radial-gradient(900px 700px at 15% 0%, rgba(99, 102, 241, 0.32), transparent 60%),
+      radial-gradient(800px 600px at 90% 20%, rgba(236, 72, 153, 0.18), transparent 55%),
+      radial-gradient(1000px 800px at 70% 100%, rgba(14, 165, 233, 0.22), transparent 60%),
+      linear-gradient(180deg, #0a0d18, #0f1226 60%, #0a0d18);
     background-attachment: fixed;
     min-height: 100vh;
-    padding: 32px 32px 56px;
+    padding: 48px 36px 80px;
+    -webkit-font-smoothing: antialiased;
   }
   header {
-    max-width: 1600px;
-    margin: 0 auto 32px;
+    max-width: 1500px;
+    margin: 0 auto 48px;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -40,45 +38,43 @@
   }
   h1 {
     margin: 0;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 600;
     letter-spacing: -0.02em;
   }
   .clock {
     color: var(--muted);
     font-variant-numeric: tabular-nums;
-    font-size: 15px;
+    font-size: 14px;
   }
-  main { max-width: 1600px; margin: 0 auto; }
+  main { max-width: 1500px; margin: 0 auto; }
 
-  .category { margin-bottom: 44px; }
+  .category { margin-bottom: 56px; }
   .category > h2 {
-    font-size: 26px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
     color: var(--text);
-    margin: 0 0 4px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin: 0 0 24px;
   }
   .subs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 28px 40px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 36px 48px;
   }
   .sub-section h3 {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--muted);
-    margin: 0 0 12px 4px;
+    color: var(--faint);
+    margin: 0 0 18px;
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 28px 16px;
   }
   a.tile {
     display: flex;
@@ -87,50 +83,85 @@
     text-align: center;
     text-decoration: none;
     color: inherit;
-    padding: 18px 10px 14px;
-    background: var(--tile);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 22px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    padding: 0 4px;
+    transition: transform 0.18s ease;
   }
-  a.tile:hover {
-    transform: translateY(-3px) scale(1.02);
-    background: var(--tile-hi);
-    border-color: var(--ring);
+  a.tile:hover { transform: translateY(-3px); }
+  a.tile:hover .icon {
+    box-shadow:
+      0 14px 28px rgba(0,0,0,0.5),
+      0 4px 8px rgba(0,0,0,0.35),
+      inset 0 1px 0 rgba(255,255,255,0.28);
   }
-  a.tile:active { transform: translateY(0) scale(0.98); }
+  a.tile:active { transform: translateY(0) scale(0.97); }
+
   .icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 18px;
+    --r: 22px;
+    width: 76px;
+    height: 76px;
+    border-radius: var(--r);
     display: grid;
     place-items: center;
-    font-size: 36px;
+    font-size: 40px;
+    line-height: 1;
+    position: relative;
+    overflow: hidden;
     margin-bottom: 10px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+    box-shadow:
+      0 8px 18px rgba(0,0,0,0.42),
+      0 2px 4px rgba(0,0,0,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.22),
+      inset 0 -8px 16px rgba(0,0,0,0.18);
+    transition: box-shadow 0.2s ease;
   }
-  .name { font-size: 13px; font-weight: 500; line-height: 1.25; }
-  .sub-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 55%);
+    pointer-events: none;
+  }
+  .icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--r);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    pointer-events: none;
+  }
+  .icon > span { position: relative; z-index: 1; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35)); }
 
-  .ic-roadmap   { background: linear-gradient(135deg, #5b8def, #2c5fd9); }
-  .ic-pitch     { background: linear-gradient(135deg, #f0a060, #d9533b); }
-  .ic-marketing { background: linear-gradient(135deg, #ff6fa0, #c0397c); }
-  .ic-henley    { background: linear-gradient(135deg, #2cb1a9, #166f6a); }
-  .ic-autocrop  { background: linear-gradient(135deg, #4fd1c5, #1f9b8e); }
-  .ic-retail    { background: linear-gradient(135deg, #f6c247, #c4881e); }
-  .ic-test      { background: linear-gradient(135deg, #6cd07c, #2c8f3e); }
-  .ic-flag      { background: linear-gradient(135deg, #ff8a5b, #d94a2b); }
-  .ic-flipbook  { background: linear-gradient(135deg, #a78bfa, #6d44d9); }
-  .ic-particles { background: linear-gradient(135deg, #f0abfc, #a21caf); }
-  .ic-steps     { background: linear-gradient(135deg, #60d394, #2a8a5b); }
-  .ic-life      { background: linear-gradient(135deg, #fb7185, #be123c); }
-  .ic-elscar    { background: linear-gradient(135deg, #38bdf8, #0369a1); }
-  .ic-foxo      { background: linear-gradient(135deg, #fb923c, #b45309); }
-  .ic-announce  { background: linear-gradient(135deg, #818cf8, #4338ca); }
-  .ic-finances  { background: linear-gradient(135deg, #34d399, #047857); }
-  .ic-ideas     { background: linear-gradient(135deg, #fde047, #ca8a04); }
+  .name {
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.25;
+    max-width: 92px;
+  }
+  .sub-label {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 2px;
+    max-width: 92px;
+    line-height: 1.2;
+  }
+
+  .ic-roadmap   { background: linear-gradient(160deg, #6f9bff, #2c5fd9 55%, #1a3fa8); }
+  .ic-pitch     { background: linear-gradient(160deg, #ffb27a, #e25c2c 55%, #b13a18); }
+  .ic-marketing { background: linear-gradient(160deg, #ff86b5, #c0397c 55%, #8a1a55); }
+  .ic-henley    { background: linear-gradient(160deg, #5fd1c8, #1f9b8e 55%, #0d655a); }
+  .ic-autocrop  { background: linear-gradient(160deg, #6ee0d3, #1f9b8e 55%, #0a6a5e); }
+  .ic-retail    { background: linear-gradient(160deg, #ffd066, #d4951f 55%, #8a5d0a); }
+  .ic-test      { background: linear-gradient(160deg, #84dd92, #2c8f3e 55%, #155c22); }
+  .ic-flag      { background: linear-gradient(160deg, #ff9d70, #d94a2b 55%, #9a2e16); }
+  .ic-flipbook  { background: linear-gradient(160deg, #b89bff, #6d44d9 55%, #4421a8); }
+  .ic-particles { background: linear-gradient(160deg, #f9b8fb, #a21caf 55%, #6b0d75); }
+  .ic-steps     { background: linear-gradient(160deg, #2a2a30, #0a0a0e 55%, #050507); }
+  .ic-life      { background: linear-gradient(160deg, #fb8b9f, #be123c 55%, #7a0a26); }
+  .ic-elscar    { background: linear-gradient(160deg, #5cc8fa, #0369a1 55%, #023b5d); }
+  .ic-foxo      { background: linear-gradient(160deg, #fdba74, #b45309 55%, #7a3506); }
+  .ic-announce  { background: linear-gradient(160deg, #a4b1ff, #4338ca 55%, #262478); }
+  .ic-finances  { background: linear-gradient(160deg, #6ee7c2, #047857 55%, #034d39); }
+  .ic-ideas     { background: linear-gradient(160deg, #fef08a, #ca8a04 55%, #855803); }
 </style>
 </head>
 <body>
@@ -147,14 +178,13 @@
           <h3>Planning &amp; Strategy</h3>
           <div class="grid">
             <a class="tile" href="file:///C:/Git/roadmap-prioritizer/index.html">
-              <div class="icon ic-roadmap">📊</div>
-              <div class="name">Roadmap Prioritizer</div>
+              <div class="icon ic-roadmap"><span>📊</span></div>
+              <div class="name">Roadmap</div>
               <div class="sub-label">Q3 planning</div>
             </a>
             <a class="tile" href="file:///C:/Users/or/product-pitch/index.html">
-              <div class="icon ic-pitch">🎯</div>
+              <div class="icon ic-pitch"><span>🎯</span></div>
               <div class="name">Product Pitch</div>
-              <div class="sub-label">Radar + pyramid</div>
             </a>
           </div>
         </div>
@@ -163,8 +193,8 @@
           <h3>Marketing</h3>
           <div class="grid">
             <a class="tile" href="file:///C:/Users/or/marketing-generator/index.html">
-              <div class="icon ic-marketing">🎨</div>
-              <div class="name">Marketing Generator</div>
+              <div class="icon ic-marketing"><span>🎨</span></div>
+              <div class="name">Marketing</div>
               <div class="sub-label">LinkedIn images</div>
             </a>
           </div>
@@ -174,14 +204,14 @@
           <h3>QA Launchers</h3>
           <div class="grid">
             <a class="tile" href="file:///C:/Users/or/solidicon-test/index.html">
-              <div class="icon ic-test">🧪</div>
+              <div class="icon ic-test"><span>🧪</span></div>
               <div class="name">Solidicon Test</div>
               <div class="sub-label">All games</div>
             </a>
             <a class="tile" href="file:///C:/Users/or/retail/index.html">
-              <div class="icon ic-retail">🎰</div>
+              <div class="icon ic-retail"><span>🎰</span></div>
               <div class="name">Retail</div>
-              <div class="sub-label">Pariplay Atropos</div>
+              <div class="sub-label">Pariplay</div>
             </a>
           </div>
         </div>
@@ -190,15 +220,15 @@
           <h3>Effects &amp; Art</h3>
           <div class="grid">
             <a class="tile" href="file:///C:/Users/or/OneDrive%20-%20solidicon.com/Documents/Tools/flag_preview.html">
-              <div class="icon ic-flag">🚩</div>
-              <div class="name">Flag Shader Previewer</div>
+              <div class="icon ic-flag"><span>🚩</span></div>
+              <div class="name">Flag Shader</div>
             </a>
             <a class="tile" href="file:///C:/Users/or/OneDrive%20-%20solidicon.com/Documents/Tools/flipbook.html">
-              <div class="icon ic-flipbook">📖</div>
+              <div class="icon ic-flipbook"><span>📖</span></div>
               <div class="name">Flipbook</div>
             </a>
             <a class="tile" href="file:///C:/Users/or/OneDrive%20-%20solidicon.com/Documents/Tools/particles.html">
-              <div class="icon ic-particles">✨</div>
+              <div class="icon ic-particles"><span>✨</span></div>
               <div class="name">Particles</div>
             </a>
           </div>
@@ -208,9 +238,9 @@
           <h3>Game Math Visualiser</h3>
           <div class="grid">
             <a class="tile" href="file:///C:/Users/or/OneDrive%20-%20solidicon.com/Documents/Tools/Steps.html">
-              <div class="icon ic-steps">💣</div>
+              <div class="icon ic-steps"><span>💣</span></div>
               <div class="name">Steps</div>
-              <div class="sub-label">Mines model · 97% RTP</div>
+              <div class="sub-label">Mines · 97% RTP</div>
             </a>
           </div>
         </div>
@@ -223,14 +253,12 @@
         <div class="sub-section">
           <div class="grid">
             <a class="tile" href="file:///C:/Users/or/henley-wiki/index.html">
-              <div class="icon ic-henley">📼</div>
+              <div class="icon ic-henley"><span>📼</span></div>
               <div class="name">Conversion Wiki</div>
-              <div class="sub-label">Handbook</div>
             </a>
             <a class="tile" href="file:///C:/Users/or/photo-autocrop/">
-              <div class="icon ic-autocrop">✂️</div>
+              <div class="icon ic-autocrop"><span>✂️</span></div>
               <div class="name">Photo Auto-Crop</div>
-              <div class="sub-label">run-windows.bat</div>
             </a>
           </div>
         </div>
@@ -244,12 +272,12 @@
           <h3>Websites</h3>
           <div class="grid">
             <a class="tile" href="file:///C:/Users/orick/elscargames-site/index.html">
-              <div class="icon ic-elscar">🎮</div>
+              <div class="icon ic-elscar"><span>🎮</span></div>
               <div class="name">Studio Site</div>
               <div class="sub-label">elscargames-site</div>
             </a>
             <a class="tile" href="file:///C:/Users/orick/foxogame-site/index.html">
-              <div class="icon ic-foxo">🦊</div>
+              <div class="icon ic-foxo"><span>🦊</span></div>
               <div class="name">Foxo Site</div>
               <div class="sub-label">foxogame-site</div>
             </a>
@@ -260,8 +288,8 @@
           <h3>Marketing</h3>
           <div class="grid">
             <a class="tile" href="file:///C:/Users/orick/elscar-announcements/index.html">
-              <div class="icon ic-announce">📣</div>
-              <div class="name">Announcement Maker</div>
+              <div class="icon ic-announce"><span>📣</span></div>
+              <div class="name">Announcements</div>
               <div class="sub-label">LinkedIn images</div>
             </a>
           </div>
@@ -275,17 +303,16 @@
         <div class="sub-section">
           <div class="grid">
             <a class="tile" href="https://oscarrickett.github.io/life-tracker/" target="_blank" rel="noopener">
-              <div class="icon ic-life">🌱</div>
+              <div class="icon ic-life"><span>🌱</span></div>
               <div class="name">Life Tracker</div>
-              <div class="sub-label">oscarrickett.github.io</div>
             </a>
             <a class="tile" href="file:///D:/Dropbox/Finances/index.html">
-              <div class="icon ic-finances">💰</div>
+              <div class="icon ic-finances"><span>💰</span></div>
               <div class="name">Finances</div>
               <div class="sub-label">Expense tracker</div>
             </a>
             <a class="tile" href="file:///D:/Dropbox/GameIdeas/index.html">
-              <div class="icon ic-ideas">💡</div>
+              <div class="icon ic-ideas"><span>💡</span></div>
               <div class="name">Game Ideas</div>
               <div class="sub-label">Idea notes</div>
             </a>

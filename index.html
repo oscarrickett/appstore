@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Projects</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  :root {
+    --bg-1: #0b1020;
+    --bg-2: #1a1f3a;
+    --bg-3: #2a1b4d;
+    --tile: rgba(255,255,255,0.08);
+    --tile-hi: rgba(255,255,255,0.16);
+    --text: #f5f7fb;
+    --muted: rgba(245,247,251,0.65);
+    --ring: rgba(255,255,255,0.25);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(1200px 800px at 15% 10%, #3b2a6b 0%, transparent 60%),
+      radial-gradient(1000px 700px at 85% 90%, #1e3a8a 0%, transparent 55%),
+      linear-gradient(160deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 32px 32px 56px;
+  }
+  header {
+    max-width: 1600px;
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .clock {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    font-size: 15px;
+  }
+  main { max-width: 1600px; margin: 0 auto; }
+
+  .category { margin-bottom: 44px; }
+  .category > h2 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin: 0 0 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .subs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px 40px;
+    margin-top: 20px;
+  }
+  .sub-section h3 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 12px 4px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
+    gap: 16px;
+  }
+  a.tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 18px 10px 14px;
+    background: var(--tile);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 22px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  }
+  a.tile:hover {
+    transform: translateY(-3px) scale(1.02);
+    background: var(--tile-hi);
+    border-color: var(--ring);
+  }
+  a.tile:active { transform: translateY(0) scale(0.98); }
+  .icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    font-size: 36px;
+    margin-bottom: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .name { font-size: 13px; font-weight: 500; line-height: 1.25; }
+  .sub-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .ic-roadmap   { background: linear-gradient(135deg, #5b8def, #2c5fd9); }
+  .ic-pitch     { background: linear-gradient(135deg, #f0a060, #d9533b); }
+  .ic-marketing { background: linear-gradient(135deg, #ff6fa0, #c0397c); }
+  .ic-henley    { background: linear-gradient(135deg, #2cb1a9, #166f6a); }
+  .ic-autocrop  { background: linear-gradient(135deg, #4fd1c5, #1f9b8e); }
+  .ic-retail    { background: linear-gradient(135deg, #f6c247, #c4881e); }
+  .ic-test      { background: linear-gradient(135deg, #6cd07c, #2c8f3e); }
+  .ic-flag      { background: linear-gradient(135deg, #ff8a5b, #d94a2b); }
+  .ic-flipbook  { background: linear-gradient(135deg, #a78bfa, #6d44d9); }
+  .ic-particles { background: linear-gradient(135deg, #f0abfc, #a21caf); }
+  .ic-steps     { background: linear-gradient(135deg, #60d394, #2a8a5b); }
+  .ic-life      { background: linear-gradient(135deg, #fb7185, #be123c); }
+  .ic-elscar    { background: linear-gradient(135deg, #38bdf8, #0369a1); }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Projects</h1>
+    <div class="clock" id="clock"></div>
+  </header>
+
+  <main>
+    <section class="category">
+      <h2>Solidicon Tools</h2>
+      <div class="subs">
+        <div class="sub-section">
+          <h3>Planning &amp; Strategy</h3>
+          <div class="grid">
+            <a class="tile" href="file:///C:/Git/roadmap-prioritizer/index.html">
+              <div class="icon ic-roadmap">📊</div>
+              <div class="name">Roadmap Prioritizer</div>
+              <div class="sub-label">Q3 planning</div>
+            </a>
+            <a class="tile" href="file:///C:/Users/or/product-pitch/index.html">
+              <div class="icon ic-pitch">🎯</div>
+              <div class="name">Product Pitch</div>
+              <div class="sub-label">Radar + pyramid</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="sub-section">
+          <h3>Marketing</h3>
+          <div class="grid">
+            <a class="tile" href="file:///C:/Users/or/marketing-generator/index.html">
+              <div class="icon ic-marketing">🎨</div>
+              <div class="name">Marketing Generator</div>
+              <div class="sub-label">LinkedIn images</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="sub-section">
+          <h3>QA Launchers</h3>
+          <div class="grid">
+            <a class="tile" href="file:///C:/Users/or/solidicon-test/index.html">
+              <div class="icon ic-test">🧪</div>
+              <div class="name">Solidicon Test</div>
+              <div class="sub-label">All games</div>
+            </a>
+            <a class="tile" href="file:///C:/Users/or/retail/index.html">
+              <div class="icon ic-retail">🎰</div>
+              <div class="name">Retail</div>
+              <div class="sub-label">Pariplay Atropos</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="sub-section">
+          <h3>Effects &amp; Art</h3>
+          <div class="grid">
+            <a class="tile" href="file:///C:/Users/or/OneDrive%20-%20solidicon.com/Documents/Tools/flag_preview.html">
+              <div class="icon ic-flag">🚩</div>
+              <div class="name">Flag Shader Previewer</div>
+            </a>
+            <a class="tile" href="file:///C:/Users/or/OneDrive%20-%20solidicon.com/Documents/Tools/flipbook.html">
+              <div class="icon ic-flipbook">📖</div>
+              <div class="name">Flipbook</div>
+            </a>
+            <a class="tile" href="file:///C:/Users/or/OneDrive%20-%20solidicon.com/Documents/Tools/particles.html">
+              <div class="icon ic-particles">✨</div>
+              <div class="name">Particles</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="sub-section">
+          <h3>Game Math Visualiser</h3>
+          <div class="grid">
+            <a class="tile" href="file:///C:/Users/or/OneDrive%20-%20solidicon.com/Documents/Tools/Steps.html">
+              <div class="icon ic-steps">💣</div>
+              <div class="name">Steps</div>
+              <div class="sub-label">Mines model · 97% RTP</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="category">
+      <h2>Henley Scan Tools</h2>
+      <div class="subs">
+        <div class="sub-section">
+          <div class="grid">
+            <a class="tile" href="file:///C:/Users/or/henley-wiki/index.html">
+              <div class="icon ic-henley">📼</div>
+              <div class="name">Conversion Wiki</div>
+              <div class="sub-label">Handbook</div>
+            </a>
+            <a class="tile" href="file:///C:/Users/or/photo-autocrop/">
+              <div class="icon ic-autocrop">✂️</div>
+              <div class="name">Photo Auto-Crop</div>
+              <div class="sub-label">run-windows.bat</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="category">
+      <h2>Personal Tools</h2>
+      <div class="subs">
+        <div class="sub-section">
+          <div class="grid">
+            <a class="tile" href="https://oscarrickett.github.io/life-tracker/" target="_blank" rel="noopener">
+              <div class="icon ic-life">🌱</div>
+              <div class="name">Life Tracker</div>
+              <div class="sub-label">oscarrickett.github.io</div>
+            </a>
+            <a class="tile" href="#" target="_blank" rel="noopener" data-needs-url="elscar">
+              <div class="icon ic-elscar">🎮</div>
+              <div class="name">Elscar Games</div>
+              <div class="sub-label">URL needed</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script>
+  const clock = document.getElementById('clock');
+  function tick() {
+    const d = new Date();
+    clock.textContent = d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })
+      + ' · ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+  tick();
+  setInterval(tick, 30000);
+</script>
+</body>
+</html>
